@@ -46,6 +46,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/list/related			// the other areas of the same type as this
 	var/list/lights				// list of all lights on this area
 
+	var/sec_status
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -108,10 +110,13 @@ proc/process_ghost_teleport_locs()
 	name = "Arrival Area"
 	icon_state = "start"
 
+/area/arrival/arrivals
+	name = "Arrivals"
+	icon_state = "start"
+
 /area/admin
 	name = "Admin room"
 	icon_state = "start"
-
 
 
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
@@ -163,20 +168,6 @@ proc/process_ghost_teleport_locs()
 /area/shuttle/transport2/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/alien/base
-	icon_state = "shuttle"
-	name = "Alien Shuttle Base"
-	requires_power = 1
-	luminosity = 0
-	sd_lighting = 1
-
-/area/shuttle/alien/mine
-	icon_state = "shuttle"
-	name = "Alien Shuttle Mine"
-	requires_power = 1
-	luminosity = 0
-	sd_lighting = 1
-
 /area/shuttle/prison/
 	name = "Prison Shuttle"
 
@@ -192,14 +183,6 @@ proc/process_ghost_teleport_locs()
 
 /area/shuttle/specops/station
 	name = "Special Ops Shuttle"
-	icon_state = "shuttlered2"
-
-/area/shuttle/syndicate_elite/mothership
-	name = "Syndicate Elite Shuttle"
-	icon_state = "shuttlered"
-
-/area/shuttle/syndicate_elite/station
-	name = "Syndicate Elite Shuttle"
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration/centcom
@@ -248,11 +231,6 @@ proc/process_ghost_teleport_locs()
 
 // === end remove
 
-/area/alien
-	name = "Alien base"
-	icon_state = "yellow"
-	requires_power = 0
-
 // CENTCOM
 
 /area/centcom
@@ -289,21 +267,6 @@ proc/process_ghost_teleport_locs()
 
 /area/centcom/holding
 	name = "Holding Facility"
-
-//SYNDICATES
-
-/area/syndicate_mothership
-	name = "Syndicate Mothership"
-	icon_state = "syndie-ship"
-	requires_power = 0
-
-/area/syndicate_mothership/control
-	name = "Syndicate Control Room"
-	icon_state = "syndie-control"
-
-/area/syndicate_mothership/elite_squad
-	name = "Syndicate Elite Squad"
-	icon_state = "syndie-elite"
 
 //EXTRA
 
@@ -460,12 +423,21 @@ proc/process_ghost_teleport_locs()
 /area/atmos
  	name = "Atmospherics"
  	icon_state = "atmos"
+ 	sec_status = access_atmospherics
 
+/area/firestation
+	name = "Firestation"
+	icon_state = "atmos"
+	sec_status = access_maint_tunnels
+
+/area/researchanddev
+	name = "Research center"
+	icon_state = "atmos"
+	sec_status = access_research
 //Maintenance
 
-/area/maintenance/atmos_control
-	name = "Atmospherics Maintenance"
-	icon_state = "fpmaint"
+/area/maintenance/
+	sec_status = access_maint_tunnels
 
 /area/maintenance/fpmaint
 	name = "Fore Port Maintenance"
@@ -563,15 +535,16 @@ proc/process_ghost_teleport_locs()
 	name = "Bridge"
 	icon_state = "bridge"
 	music = "signal"
-
-/area/bridge/meeting_room
-	name = "Heads of Staff Meeting Room"
-	icon_state = "bridge"
-	music = null
+	sec_status = access_heads
 
 /area/crew_quarters/captain
 	name = "Captain's Quarters"
 	icon_state = "captain"
+	sec_status = access_captain
+
+/area/crew_quarters/meetingroom
+	name = "Meeting room"
+	icon_state = "courtroom"
 
 /area/crew_quarters/courtroom
 	name = "Courtroom"
@@ -580,14 +553,17 @@ proc/process_ghost_teleport_locs()
 /area/crew_quarters/heads
 	name = "Head of Personnel's Quarters"
 	icon_state = "head_quarters"
+	sec_status = access_hop
 
 /area/crew_quarters/hor
 	name = "Research Director's Office"
 	icon_state = "head_quarters"
+	sec_status = access_rd
 
 /area/crew_quarters/chief
 	name = "Chief Engineer's Office"
 	icon_state = "head_quarters"
+	sec_status = access_ce
 
 /area/mint
 	name = "Mint"
@@ -658,7 +634,7 @@ proc/process_ghost_teleport_locs()
 /area/chapel/office
 	name = "Chapel Office"
 	icon_state = "chapeloffice"
-
+	sec_status = access_chapel_office
 /area/lawoffice
 	name = "Law Office"
 	icon_state = "law"
@@ -758,23 +734,25 @@ proc/process_ghost_teleport_locs()
 	name = "Medbay"
 	icon_state = "medbay"
 	music = 'signal.ogg'
+	sec_status = access_medical
 
 /area/medical/patients_rooms
 	name = "Patients Rooms"
 	icon_state = "patients"
+	sec_status = access_medical
 
 /area/medical/cmo
 	name = "Chief Medical Officer's office"
 	icon_state = "CMO"
+	sec_status = access_cmo
 
 /area/medical/robotics
 	name = "Robotics"
 	icon_state = "medresearch"
-
+	sec_status = access_robotics
 /area/medical/research
 	name = "Medical Research"
 	icon_state = "medresearch"
-
 /area/medical/virology
 	name = "Virology"
 	icon_state = "virology"
@@ -782,6 +760,7 @@ proc/process_ghost_teleport_locs()
 /area/medical/morgue
 	name = "Morgue"
 	icon_state = "morgue"
+	sec_status = access_morgue
 
 /area/medical/chemistry
 	name = "Chemistry"
@@ -798,12 +777,30 @@ proc/process_ghost_teleport_locs()
 /area/medical/exam_room
 	name = "Exam Room"
 	icon_state = "exam_room"
+	sec_status = access_medical
 
 /area/medical/genetics
 	name = "Genetics"
 	icon_state = "genetics"
 
+/area/medical/storage
+	name = "Medical storage"
+	icon_state = "chem"
+	sec_status = access_medical
+
+/area/medical/waiting
+	name = "Waiting area"
+	icon_state = "exam_room"
+
+/area/medical/office
+	name = "Medical office"
+	icon_state = "CMO"
+	sec_status = access_medical
+
 //Security
+
+/area/security
+	sec_status = access_security
 
 /area/security/main
 	name = "Security"
@@ -812,6 +809,11 @@ proc/process_ghost_teleport_locs()
 /area/security/brig
 	name = "Brig"
 	icon_state = "brig"
+
+
+/area/security/secstorage
+	name = "Security storage"
+	icon_state = "Warden"
 
 /area/security/warden
 	name = "Warden"
@@ -824,6 +826,11 @@ proc/process_ghost_teleport_locs()
 /area/security/detectives_office
 	name = "Detectives Office"
 	icon_state = "detective"
+	sec_status = access_forensics_lockers
+
+/area/security/brig2
+	name = "Secondary brig"
+	icon_state = "brig"
 
 /*
 	New()
@@ -861,6 +868,7 @@ proc/process_ghost_teleport_locs()
 /area/quartermaster
 	name = "Quartermasters"
 	icon_state = "quart"
+	sec_status = access_cargo
 
 ///////////WORK IN PROGRESS//////////
 
@@ -897,7 +905,7 @@ proc/process_ghost_teleport_locs()
 /area/janitor/
 	name = "Janitors Closet"
 	icon_state = "janitor"
-
+	sec_status = access_janitor
 /area/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
@@ -907,6 +915,7 @@ proc/process_ghost_teleport_locs()
 /area/toxins/lab
 	name = "Toxin Lab"
 	icon_state = "toxlab"
+	sec_status = access_tox
 
 /area/toxins/xenobiology
 	name = "Xenobiology Lab"
@@ -915,7 +924,7 @@ proc/process_ghost_teleport_locs()
 /area/toxins/storage
 	name = "Toxin Storage"
 	icon_state = "toxstorage"
-
+	sec_status = access_tox_storage
 /area/toxins/test_area
 	name = "Toxin Test Area"
 	icon_state = "toxtest"
@@ -927,17 +936,18 @@ proc/process_ghost_teleport_locs()
 /area/toxins/server
 	name = "Server Room"
 	icon_state = "server"
+	sec_status = access_rd
 
 //Storage
 
 /area/storage/tools
 	name = "Tool Storage"
 	icon_state = "storage"
-
+	sec_status = access_maint_tunnels
 /area/storage/primary
 	name = "Primary Tool Storage"
 	icon_state = "primarystorage"
-
+	sec_status = access_maint_tunnels
 /area/storage/autolathe
 	name = "Autolathe Storage"
 	icon_state = "storage"
@@ -949,6 +959,7 @@ proc/process_ghost_teleport_locs()
 /area/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
+	sec_status = access_eva
 
 /area/storage/secure
 	name = "Secure Storage"
@@ -965,6 +976,7 @@ proc/process_ghost_teleport_locs()
 /area/storage/tech
 	name = "Technical Storage"
 	icon_state = "auxstorage"
+	sec_status = access_tech_storage
 
 /area/storage/testroom
 	requires_power = 0
@@ -1108,6 +1120,7 @@ proc/process_ghost_teleport_locs()
 /area/ai_monitored/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
+	sec_status = access_eva
 
 /area/ai_monitored/storage/secure
 	name = "Secure Storage"
@@ -1120,23 +1133,25 @@ proc/process_ghost_teleport_locs()
 /area/turret_protected/ai_upload
 	name = "AI Upload Chamber"
 	icon_state = "ai_upload"
+	sec_status = access_ai_upload
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Foyer"
 	icon_state = "ai_foyer"
+	sec_status = access_ai_upload
 
 /area/turret_protected/ai
 	name = "AI Chamber"
 	icon_state = "ai_chamber"
-
+	sec_status = access_ai_upload
 /area/turret_protected/aisat
 	name = "AI Satellite"
 	icon_state = "ai"
-
+	sec_status = access_ai_upload
 /area/turret_protected/aisat_interior
 	name = "AI Satellite"
 	icon_state = "ai"
-
+	sec_status = access_ai_upload
 /area/turret_protected/AIsatextFP
 	name = "AI Sat Ext"
 	icon_state = "storage"
