@@ -1180,6 +1180,15 @@ proc/process_ghost_teleport_locs()
 	name = "AI Main New"
 	icon_state = "storage"
 
+
+/area/syndicate_mothership/elite_squad
+/area/syndicate_mothership/control/
+/area/syndicate_mothership
+/area/shuttle/syndicate_elite/mothership
+/area/shuttle/syndicate_elite/station
+
+/area/shuttle/alien/mine
+/area/shuttle/alien/base
 /////////////////////////////////////////////////////////////////////
 /*
  Lists of areas to be used with is_type_in_list.
