@@ -135,7 +135,7 @@ var/global/list/uneatable = list(
 					icon_state = "singularity_s3"
 					pixel_x = -32
 					pixel_y = -32
-					grav_pull = 6
+					grav_pull = 2
 					consume_range = 1
 					dissipate_delay = 5
 					dissipate_track = 0
@@ -147,7 +147,7 @@ var/global/list/uneatable = list(
 						icon_state = "singularity_s5"
 						pixel_x = -64
 						pixel_y = -64
-						grav_pull = 8
+						grav_pull = 4
 						consume_range = 2
 						dissipate_delay = 4
 						dissipate_track = 0
@@ -380,7 +380,7 @@ var/global/list/uneatable = list(
 			var/numb = pick(1,2,3,4,5,6)
 			switch(numb)
 				if(1)//EMP
-					emp_area()
+				//	emp_area()
 				if(2,3)//tox damage all carbon mobs in area
 					toxmob()
 				if(4)//Stun mobs who lack optic scanners
