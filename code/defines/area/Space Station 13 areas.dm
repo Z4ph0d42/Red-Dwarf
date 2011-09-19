@@ -113,6 +113,7 @@ proc/process_ghost_teleport_locs()
 /area/arrival/arrivals
 	name = "Arrivals"
 	icon_state = "start"
+	requires_power = 1
 
 /area/admin
 	name = "Admin room"
