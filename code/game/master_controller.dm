@@ -44,6 +44,13 @@ datum/controller/game_controller
 		for(var/obj/object in world)
 			object.initialize()
 
+		for(var/area/A in world)
+			if(A.sec_status)
+				for(var/obj/machinery/door/d in A)
+					if(d.req_access_txt == "0")
+						d.req_access_txt = "[A.sec_status]"
+						d.req_access = list(A.sec_status)
+
 		world << "\red \b Initializing pipe networks"
 		sleep(-1)
 

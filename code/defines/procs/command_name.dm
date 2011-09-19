@@ -22,7 +22,7 @@ var/command_name = null
 	name += " "
 
 	command_name = name
-	return name
+	return "Nanotrasen Command"
 
 /proc/change_command_name(var/name)
 

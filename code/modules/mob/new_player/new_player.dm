@@ -385,6 +385,7 @@ mob/new_player
 	proc/LateChoices()
 		var/dat = "<html><body>"
 		dat += "Choose from the following open positions:<br>"
+		/*
 		if (IsJobAvailable("Captain",captainMax))
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=1'>Captain</a><br>"
 
@@ -471,6 +472,8 @@ mob/new_player
 
 		if (IsJobAvailable("Shaft Miner",minerMax))
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=29'>Shaft Miner</a><br>"
+
+		 */
 
 		if (!jobban_isbanned(src,"Assistant"))
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=18'>Assistant</a><br>"

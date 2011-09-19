@@ -16,12 +16,6 @@ Starting up. [time2text(world.timeofday, "hh:mm.ss")]
 	process_ghost_teleport_locs() //Sets up ghost teleport locations.
 	sleep_offline = 1
 
-	for(var/area/A in world)
-		if(A.sec_status)
-			for(var/obj/machinery/door/d in A)
-				if(!d.req_access)
-					d.req_access = list(A.sec_status)
-
 	if (config.kick_inactive)
 		spawn(30)
 			KickInactiveClients()

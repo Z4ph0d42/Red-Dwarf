@@ -36,7 +36,7 @@
 	else
 		world.name = name
 
-	return name
+	return "Spacestation 13"
 
 /proc/world_name(var/name)
 

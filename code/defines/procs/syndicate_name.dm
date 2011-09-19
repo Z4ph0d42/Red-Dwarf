@@ -26,7 +26,7 @@ var/syndicate_name = null
 		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
 
 	syndicate_name = name
-	return name
+	return "Syndicate Consortium"
 
 
 //Traitors and traitor silicons will get these. Revs will not.

@@ -65,7 +65,7 @@ var
 	aliens_allowed = 1
 	ooc_allowed = 1
 	dooc_allowed = 1
-	traitor_scaling = 1
+	traitor_scaling = 0
 	goonsay_allowed = 0
 	dna_ident = 1
 	abandon_allowed = 1
@@ -93,7 +93,7 @@ var
 	chaplainMax = 1
 	janitorMax = 1
 	doctorMax = 4
-	clownMax = 1
+	clownMax = 0
 	chefMax = 1
 	roboticsMax = 3
 	cargoMax = 1
@@ -104,7 +104,7 @@ var
 	viroMax = 1
 	wardenMax = 1
 	cmoMax = 1
-	mimeMax = 1
+	mimeMax = 0
 	sorterMax = 2
 	//borgMax = 1 < Isn't used anymore since borgs can't latejoin now. -- Urist
 

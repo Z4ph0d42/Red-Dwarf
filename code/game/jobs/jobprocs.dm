@@ -54,6 +54,16 @@
 			unassigned -= candidate
 			candidate.mind.assigned_role = "Captain"
 			break
+		else
+			var/list/mob/new_player/captain_candidates = list()
+			for(var/mob/new_player/P in world)
+				if(!jobban_isbanned(P, "Captain"))
+					captain_candidates += P
+
+			var/mob/new_player/captain = pick(captain_candidates)
+			if(captain)
+				captain.mind.assigned_role = "Captain"
+				unassigned -= captain
 
 	//Then check for an AI
 	for (var/level = 1 to 3)//Malf is a bit special as it replaces a normal job
