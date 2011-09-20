@@ -32,9 +32,9 @@
 	station_name = "Spacestation 13"
 
 	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+		world.name = "[config.server_name]: Spacestation 13"
 	else
-		world.name = name
+		world.name = "Spacestation 13"
 
 	return "Spacestation 13"
 
