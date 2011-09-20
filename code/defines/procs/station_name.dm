@@ -29,7 +29,7 @@
 	else
 		name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen")
 
-	station_name = name
+	station_name = "Spacestation 13"
 
 	if (config && config.server_name)
 		world.name = "[config.server_name]: [name]"

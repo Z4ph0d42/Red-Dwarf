@@ -25,7 +25,7 @@ var/syndicate_name = null
 		name += pick("-", "*", "")
 		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
 
-	syndicate_name = name
+	syndicate_name = "Syndicate Consortium"
 	return "Syndicate Consortium"
 
 

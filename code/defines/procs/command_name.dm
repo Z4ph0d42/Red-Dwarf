@@ -21,7 +21,7 @@ var/command_name = null
 	name += pick("Federation", "Command", "Alliance", "Unity", "Empire", "Confederation", "Kingdom", "Monarchy", "Complex", "Protectorate", "Commonwealth", "Imperium", "Republic")
 	name += " "
 
-	command_name = name
+	command_name = "Nanotrasen Command"
 	return "Nanotrasen Command"
 
 /proc/change_command_name(var/name)
