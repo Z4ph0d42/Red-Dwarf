@@ -47,23 +47,25 @@
 		return 0
 
 	//Check for a Captain first
+	var/gotcaptain = 0
 	for (var/level = 1 to 3)
 		var/list/candidates = FindOccupationCandidates(unassigned, "Captain", level)
 		if (candidates.len)
 			var/mob/new_player/candidate = pick(candidates)
 			unassigned -= candidate
 			candidate.mind.assigned_role = "Captain"
+			gotcaptain = 1
 			break
-		else
-			var/list/mob/new_player/captain_candidates = list()
-			for(var/mob/new_player/P in world)
-				if(!jobban_isbanned(P, "Captain"))
-					captain_candidates += P
+	if(gotcaptain == 0)
+		var/list/mob/new_player/captain_candidates = list()
+		for(var/mob/new_player/P in world)
+			if(!jobban_isbanned(P, "Captain"))
+				captain_candidates += P
 
-			var/mob/new_player/captain = pick(captain_candidates)
-			if(captain)
-				captain.mind.assigned_role = "Captain"
-				unassigned -= captain
+		var/mob/new_player/captain = pick(captain_candidates)
+		if(captain)
+			captain.mind.assigned_role = "Captain"
+			unassigned -= captain
 
 	//Then check for an AI
 	for (var/level = 1 to 3)//Malf is a bit special as it replaces a normal job
