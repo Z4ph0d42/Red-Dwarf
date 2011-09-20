@@ -202,7 +202,7 @@
 		if("Chef")
 			return list(access_kitchen, access_morgue)
 		if("Roboticist")
-			return list(access_robotics, access_tech_storage, access_maint_tunnels)
+			return list(access_robotics, access_tech_storage, access_maint_tunnels, access_medical,access_medlab,access_morgue)
 		if("Cargo Technician")
 			return list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 		if("Shaft Miner")

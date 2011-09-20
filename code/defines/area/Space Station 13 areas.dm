@@ -643,6 +643,7 @@ proc/process_ghost_teleport_locs()
 //Engineering
 
 /area/engine
+	sec_status = access_engine
 	engine_smes
 		name = "Engineering SMES"
 		icon_state = "engine_smes"
