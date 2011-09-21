@@ -2,11 +2,12 @@
 	if(prob(50))//Every 120 seconds and prob 50 2-4 weak spacedusts will hit the station
 		spawn(1)
 			dust_swarm("weak")
+	/*
 	if (!event && prob(eventchance))
 		event()
 		hadevent = 1
 		spawn(1300)
-			event = 0
+			event = 0*/
 	spawn(1200)
 		start_events()
 
