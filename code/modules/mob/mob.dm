@@ -940,7 +940,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 				for(var/mob/O in viewers(usr, null))
 					O.show_message(text("\red <B>[] resists!</B>", usr), 1)
 
-			if(usr:handcuffed && usr:canmove && (usr.last_special <= world.time))
+		/*	if(usr:handcuffed && usr:canmove && (usr.last_special <= world.time))
 				usr.next_move = world.time + 100
 				usr.last_special = world.time + 100
 				if(isalienadult(usr) || usr.mutations & HULK)//Don't want to do a lot of logic gating here.
@@ -966,8 +966,8 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 								O.show_message(text("\red <B>[] manages to remove the handcuffs!</B>", usr), 1)
 							usr << "\blue You successfully remove your handcuffs."
 							usr:handcuffed:loc = usr:loc
-							usr:handcuffed = null
-
+							usr:handcuffed = null*/
+/*
 			if(usr:handcuffed && (usr.last_special <= world.time) && usr:buckled)
 				usr.next_move = world.time + 100
 				usr.last_special = world.time + 100
@@ -980,7 +980,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 						for(var/mob/O in viewers(usr))
 							O.show_message(text("\red <B>[] manages to unbuckle themself!</B>", usr), 1)
 						usr << "\blue You successfully unbuckle yourself."
-						usr:buckled.manual_unbuckle_all(usr)
+						usr:buckled.manual_unbuckle_all(usr)*/
 		if("module")
 			if(istype(usr, /mob/living/silicon/robot))
 				if(usr:module)
