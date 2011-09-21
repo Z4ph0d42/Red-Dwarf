@@ -12,7 +12,7 @@
 	icon_state = "pod_0"
 	req_access = list(access_medlab) //For premature unlocking.
 	var/mob/living/occupant
-	var/heal_level = 90 //The clone is released once its health reaches this level.
+	var/heal_level = -90 //The clone is released once its health reaches this level.
 	var/locked = 0
 	var/obj/machinery/computer/cloning/connected = null //So we remember the connected clone machine.
 	var/mess = 0 //Need to clean out it if it's full of exploded clone.
@@ -451,7 +451,7 @@
 	src.occupant.rejuv = 10
 	src.occupant.cloneloss += 190 //new damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
 	src.occupant.brainloss += 90
-	src.occupant.paralysis += 4
+	src.occupant.paralysis += 5
 
 	//Here let's calculate their health so the pod doesn't immediately eject them!!!
 	src.occupant.health = (src.occupant.bruteloss + src.occupant.toxloss + src.occupant.oxyloss + src.occupant.cloneloss)
