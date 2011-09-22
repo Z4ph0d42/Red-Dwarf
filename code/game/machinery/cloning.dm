@@ -449,7 +449,7 @@
 	src.icon_state = "pod_1"
 	//Get the clone body ready
 	src.occupant.rejuv = 10
-	src.occupant.cloneloss += 190 //new damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
+//	src.occupant.cloneloss += 190 //new damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
 	src.occupant.brainloss += 90
 	src.occupant.paralysis += 5
 
