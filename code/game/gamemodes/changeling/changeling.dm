@@ -6,7 +6,7 @@
 	name = "changeling"
 	config_tag = "changeling"
 	restricted_jobs = list("AI", "Cyborg")
-	required_players = 15
+	required_players = 2
 	required_enemies = 1
 
 	var
@@ -31,7 +31,7 @@
 			waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 			waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-			const/changeling_amount = 4
+			const/changeling_amount = 1
 
 /datum/game_mode/changeling/announce()
 	world << "<B>The current game mode is - Changeling!</B>"
@@ -77,7 +77,7 @@
 
 	var/datum/objective/absorb/absorb_objective = new
 	absorb_objective.owner = changeling
-	absorb_objective.gen_amount_goal(8,12)
+	absorb_objective.gen_amount_goal(3,5)
 	changeling.objectives += absorb_objective
 
 	switch(rand(1,100))
