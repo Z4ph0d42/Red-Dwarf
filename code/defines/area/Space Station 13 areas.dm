@@ -942,6 +942,12 @@ proc/process_ghost_teleport_locs()
 
 //Storage
 
+/area/storage/electrical
+	name = "Electrical Storage"
+	icon_state = "storage"
+	sec_status = access_tech_storage
+
+
 /area/storage/tools
 	name = "Tool Storage"
 	icon_state = "storage"

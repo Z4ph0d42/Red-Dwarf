@@ -1,6 +1,10 @@
 /obj/closet/emcloset/New()
-	..()
 
+	new /obj/item/weapon/tank/emergency_oxygen(src)
+	new /obj/item/clothing/mask/gas(src)
+
+	..()
+/*
 	if (prob(40))
 		new /obj/item/weapon/storage/toolbox/emergency(src)
 
@@ -31,3 +35,6 @@
 		/*if ("fire")
 			new /obj/closet/firecloset(src.loc)
 			del(src)*/
+
+
+*/
