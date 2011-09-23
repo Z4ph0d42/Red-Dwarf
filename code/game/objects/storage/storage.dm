@@ -218,16 +218,23 @@
 	..()
 	contents = list()
 	sleep(1)
-	new /obj/item/clothing/mask/breath( src )
-	new /obj/item/weapon/tank/emergency_oxygen( src )
+//	new /obj/item/clothing/mask/breath( src )
+//	new /obj/item/weapon/tank/emergency_oxygen( src )
+	var/obj/item/weapon/paper = new /obj/item/weapon/paper(src)
+	paper.text = "Cutting back on emergency supplies, the station should be pretty safe anyway -- NT Command"
+
+	if(prob(5))
+		var/type = pick(/obj/item/trash/candy,/obj/item/trash/chips,/obj/item/trash/sosjerky)
+		new type(src)
+
 	return
 
 /obj/item/weapon/storage/box/engineer/New()
 	..()
 	contents = list()
 	sleep(1)
-	new /obj/item/clothing/mask/breath( src )
-	new /obj/item/weapon/tank/emergency_oxygen/engi( src )
+//	new /obj/item/clothing/mask/breath( src )
+//	new /obj/item/weapon/tank/emergency_oxygen/engi( src )
 	return
 
 /obj/item/weapon/storage/box/syndicate/New()
